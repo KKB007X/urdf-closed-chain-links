@@ -9,3 +9,11 @@ In this project, I will experiment with possible workaround methods for this lim
 ## Step 1
 
 For this project, I am using a gripper design referenced from an existing project. I simplified the CAD model and created a basic URDF representation of the mechanism by leaving the kinematic loops open, resulting in multiple independent branches.
+
+## Step 2:
+
+The first branch of the gripper was connected to a position controller through ros2_control. Individual joint motion was successfully tested in Gazebo, confirming that the simulation, controller configuration, and hardware interfaces were functioning correctly.
+
+## Step 3:
+
+The next step is to invetigate an approach for making closed chani behaviour.
