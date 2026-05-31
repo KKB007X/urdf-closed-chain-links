@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+
+<robot name="gripper1">
+
+    <gazebo>
+        <plugin
+            filename="/opt/ros/jazzy/lib/libgz_ros2_control-system.so"
+            name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+
+            <parameters>/home/kkb007x/ros2p/src/clg/config/control.yaml</parameters>
+
+        </plugin>
+    </gazebo>
+
+    <ros2_control name="GazeboSimSystem" type="system">
+
+
+        <hardware>
+            <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </hardware>
+
+
+        <joint name="jointb1">
+
+
+            <command_interface name="position"/>
+
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+
+
+        </joint>
+
+
+    </ros2_control>
+
+
+    <material name="cyan">
+        <color rgba="0.0 0.6 0.6 1.0"/>
+    </material>
+    <material name="green">
+        <color rgba="0.0 0.6 0.0 1.0"/>
+    </material>
+    <material name="blue">
+        <color rgba="0.0 0.0 0.6 1.0"/>
+    </material>
+
+    <link name="base_link">
+        <inertial>
+            <origin xyz="0 0 0.05"/>
+            <mass value="5.0"/>
+            <inertia
+                ixx="0.1"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="0.1"
+                iyz="0.0"
+                izz="0.1"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.05"/>
+            <geometry>
+                <box size="0.5 0.5 0.1"/>
+            </geometry>
+            <material name="cyan"/>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.05"/>
+            <geometry>
+                <box size="0.5 0.5 0.1"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="link1">
+        <inertial>
+            <origin xyz="0 0 0.15"/>
+            <mass value="1.0"/>
+            <inertia
+                ixx="0.02"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="0.02"
+                iyz="0.0"
+                izz="0.02"/>
+        </inertial>
+
+        <visual>
+            <geometry>
+                <box size="0.05 0.1 0.4"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.15"/>
+            <material name="green"/>
+        </visual>
+    </link>
+
+    <link name="link2">
+        <inertial>
+            <origin xyz="0 0 0.15"/>
+            <mass value="1.0"/>
+            <inertia
+                ixx="0.02"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="0.02"
+                iyz="0.0"
+                izz="0.02"/>
+        </inertial>
+
+        <visual>
+            <geometry>
+                <box size="0.05 0.1 0.4"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.15"/>
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <link name="end_link">
+        <inertial>
+            <origin xyz="0 0 0.15"/>
+            <mass value="1.0"/>
+            <inertia
+                ixx="0.03"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="0.03"
+                iyz="0.0"
+                izz="0.03"/>
+        </inertial>
+
+        <visual>
+            <geometry>
+                <box size="0.5 0.05 0.4"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.15"/>
+            <material name="blue"/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <box size="0.5 0.05 0.4"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.15"/>
+        </collision>
+    </link>
+
+    <link name="link3">
+        <inertial>
+            <origin xyz="0 0 0.25"/>
+            <mass value="1.0"/>
+            <inertia
+                ixx="0.03"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="0.03"
+                iyz="0.0"
+                izz="0.03"/>
+        </inertial>
+
+        <visual>
+            <geometry>
+                <box size="0.05 0.1 0.6"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.25"/>
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <link name="link4">
+        <inertial>
+            <origin xyz="0 0 0.05"/>
+            <mass value="0.5"/>
+            <inertia
+                ixx="0.01"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="0.01"
+                iyz="0.0"
+                izz="0.01"/>
+        </inertial>
+
+        <visual>
+            <geometry>
+                <box size="0.05 0.1 0.2"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.05"/>
+            <material name="green"/>
+        </visual>
+    </link>
+
+    <link name="link5">
+        <inertial>
+            <origin xyz="0 0 0.05"/>
+            <mass value="0.5"/>
+            <inertia
+                ixx="0.01"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="0.01"
+                iyz="0.0"
+                izz="0.01"/>
+        </inertial>
+
+        <visual>
+            <geometry>
+                <box size="0.05 0.1 0.2"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.05"/>
+            <material name="green"/>
+        </visual>
+    </link>
+
+    <joint name="jointb1" type="revolute">
+        <origin xyz="0.0 0.2 0.1"/>
+        <parent link="base_link"/>
+        <child link="link1"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="0" upper="1" effort="10" velocity="1.0"/>
+        <dynamics damping="1.0" friction="0.1"/>
+    </joint>
+
+    <joint name="joint12" type="revolute">
+        <origin xyz="0.0 0.0 0.3"/>
+        <parent link="link1"/>
+        <child link="link2"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-2" upper="0" effort="10" velocity="1.0"/>
+        <dynamics damping="1.0" friction="0.1"/>
+    </joint>
+
+    <joint name="joint2e" type="revolute">
+        <origin xyz="0.0 0.05 0.3"/>
+        <parent link="link2"/>
+        <child link="end_link"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-1" upper="1" effort="10" velocity="1.0"/>
+        <dynamics damping="1.0" friction="0.1"/>
+    </joint>
+
+    <joint name="jointb3" type="revolute">
+        <origin xyz="0.0 -0.1 0.1"/>
+        <parent link="base_link"/>
+        <child link="link3"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-1" upper="0" effort="10" velocity="1.0"/>
+        <dynamics damping="1.0" friction="0.1"/>
+    </joint>
+
+    <joint name="joint34" type="revolute">
+        <origin xyz="0.0 0.0 0.3"/>
+        <parent link="link3"/>
+        <child link="link4"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-3" upper="0" effort="10" velocity="1.0"/>
+        <dynamics damping="1.0" friction="0.1"/>
+    </joint>
+
+    <joint name="joint35" type="revolute">
+        <origin xyz="0.0 0.0 0.5"/>
+        <parent link="link3"/>
+        <child link="link5"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-3" upper="0" effort="10" velocity="1.0"/>
+        <dynamics damping="1.0" friction="0.1"/>
+    </joint>
+
+</robot>
