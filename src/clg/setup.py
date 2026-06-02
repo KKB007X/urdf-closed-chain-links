@@ -31,6 +31,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'constraint_solver = clg.constraint_solver:main',
         ],
     },
 )
