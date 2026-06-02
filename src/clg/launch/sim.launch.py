@@ -2,6 +2,11 @@ from launch import LaunchDescription
 from launch.actions import ExecuteProcess, TimerAction
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
+from launch.actions import SetEnvironmentVariable
+from ament_index_python.packages import (
+    get_package_share_directory,
+    get_package_prefix
+)
 
 import os
 
@@ -11,6 +16,14 @@ def generate_launch_description():
     pkg_path = get_package_share_directory('clg')
 
     urdf_path = os.path.join(pkg_path, 'model', 'clg.urdf')
+
+    plugin_path = SetEnvironmentVariable(
+        name='GZ_SIM_SYSTEM_PLUGIN_PATH',
+        value=os.path.join(
+            get_package_prefix('clg_plugins'),
+            'lib'
+        )
+    )
 
     with open(urdf_path, 'r') as file:
         robot_desc = file.read()
@@ -84,6 +97,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        plugin_path,
         robot_state_publisher,
         gazebo,
         spawn_robot,

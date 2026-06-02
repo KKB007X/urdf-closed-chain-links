@@ -180,9 +180,6 @@ public:
                     -force,
                     localC);
 
-                std::cout << "distance = " << error.Length()
-                    << " force = " << force.Length()
-                    << std::endl;
             }
             if (pose2Comp && pose5Comp)
             {
@@ -212,13 +209,6 @@ public:
                 gz::sim::Link link2(link2Entity);
                 gz::sim::Link link5(link5Entity);
 
-                if (counter % 1000 == 0)
-                {
-                    std::cout
-                        << "Distance2 = "
-                        << distance2
-                        << std::endl;
-                }
                 link5.AddWorldForce(
                     ecm,
                     force2,

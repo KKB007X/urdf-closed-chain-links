@@ -4,17 +4,17 @@
 
     <gazebo>
         <plugin
-            filename="/opt/ros/jazzy/lib/libgz_ros2_control-system.so"
-            name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        filename="/opt/ros/jazzy/lib/libgz_ros2_control-system.so"
+        name="gz_ros2_control::GazeboSimROS2ControlPlugin">
 
-            <parameters>/home/kkb007x/ros2p/src/clg/config/control.yaml</parameters>
+            <parameters>config/control.yaml</parameters>
 
         </plugin>
     </gazebo>
 
     <gazebo>
         <plugin
-            filename="/home/kkb007x/ros2p/install/clg_plugins/lib/libspring_plugin.so"
+            filename="libspring_plugin.so"
             name="clg_plugins::SpringPlugin">
         </plugin>
     </gazebo>
