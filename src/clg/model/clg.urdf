@@ -7,7 +7,7 @@
         filename="/opt/ros/jazzy/lib/libgz_ros2_control-system.so"
         name="gz_ros2_control::GazeboSimROS2ControlPlugin">
 
-            <parameters>config/control.yaml</parameters>
+            <parameters>/home/kkb007x/ros2p/install/clg/share/clg/config/control.yaml</parameters>
 
         </plugin>
     </gazebo>
