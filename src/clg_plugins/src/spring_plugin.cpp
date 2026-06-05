@@ -160,7 +160,6 @@ public:
                 auto worldB =
                     pose4.Pos() +
                     pose4.Rot().RotateVector(localB);
-
                 auto error = worldA - worldB;
 
                 double distance = error.Length();
@@ -168,17 +167,19 @@ public:
                 gz::math::Vector3d force = k * error;
 
                 gz::sim::Link link4(link4Entity);
-                gz::sim::Link linkb(linkbEntity);
+                gz::sim::Link link1(link1Entity);
 
 
                 link4.AddWorldForce(
                     ecm,
                     force,
                     localB);
-                linkb.AddWorldForce(
-                    ecm,
-                    -force,
-                    localC);
+                if (distance > 0.02){
+                    link1.AddWorldForce(
+                        ecm,
+                        -force,
+                        localA);
+                }
 
             }
             if (pose2Comp && pose5Comp)
