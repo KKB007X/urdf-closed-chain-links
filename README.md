@@ -57,3 +57,4 @@ The resulting system successfully approximates a closed-chain mechanism while re
 
 Further work will focus on improving constraint accuracy, analysing simulation stability, and investigating methods for controlling the orientation of the end effector relative to the base link.
 
+here's an application of this concept : https://github.com/KKB007X/closed_chain_gripper
